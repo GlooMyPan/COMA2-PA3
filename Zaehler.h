@@ -7,7 +7,11 @@
 
 #include <iostream> // für cout
 #include <string>
+#include <utility>
 
+/**
+* Klasse f¨ur einzelne W¨orter mit Z¨ahler f¨ur H¨aufigkeit
+**/
 
 class Zaehler
 {
@@ -16,26 +20,16 @@ class Zaehler
     size_t _count; // zählt die Häufigkeit der Worter
 public:
     friend
-    std::ostream &operator<<(std::ostream &cout, Zaehler const &zaehler);
+    std::ostream &operator<<(std::ostream &cout, Zaehler const &zaehler)
+    {
+        return std::cout << zaehler._s << " "<< zaehler._count;;
+    }
 
 /***  Konstruktoren  ***/
-    Zaehler(std::string const &s)
-    {
-        _s = s;
-        _count = 1;
-    }
-
-/***  get-Methoden  ***/
-    std::string get_string() const
-    {
-        return _s;
-    }
-
-
-    size_t get_count() const
-    {
-        return _count;
-    }
+    Zaehler(std::string const& s)
+        :_s(s),
+         _count(1)
+    {}
 
 /***  set-Methoden  ***/
     void count()
@@ -43,22 +37,16 @@ public:
         ++_count;
     }
 
-/***  Interaktionsmethoden, z.B. Vergleiche  ***/
+/***  Vergleichesoperatoren  ***/
     bool operator>(Zaehler const & zaehler) const
     {
-        return get_count() > zaehler.get_count();
+        return _count < zaehler._count;
     }
 
     bool operator==(Zaehler const & zaehler) const
     {
-        return get_string() == zaehler.get_string();
+        return _s == zaehler._s;
     }
 };
-/***  globale Funktionen  ***/
-std::ostream &operator<<(std::ostream &cout, Zaehler const &zaehler)
-{
-    return std::cout << zaehler.get_string();
-}
-
 
 #endif //PA3_ZAEHLER_H

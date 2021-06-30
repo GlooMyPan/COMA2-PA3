@@ -3,13 +3,18 @@
 #include <fstream>
 #include <string>
 #include "Liste.h"
-#include "Liste.cpp"
 #include "Zaehler.h"
 #include "Stoppuhr.h"
 
 using namespace std ;
 
 /***
+* Release-Version:
+* Zeit Einlesen:      6.863 s
+* Zeit InsertionSort: 3.406 s
+* Zeit MergeSort:     0.004 s
+*
+* Debug-Version:
 * Zeit Einlesen:      2993.52 s
 * Zeit InsertionSort: 23.168 s
 * Zeit MergeSort:     0.34 s
@@ -73,7 +78,7 @@ try
 	      füge wort neu in woerter ein, wenn nicht      ***/
 
         Zaehler zaehler(wort);
-        auto zaehlerIter = woerter.find(zaehler); // suche wort in woerter
+        Liste<Zaehler>::iterator zaehlerIter = woerter.find(zaehler); // suche wort in woerter
         if (zaehlerIter != woerter.end()) // wenn wort in woerter stellt
             zaehlerIter->count(); // +1 count
         else // wenn nicht
@@ -117,7 +122,7 @@ try
 		if ( anzahl-- == 0 )
 			break ;
 
-		cout << setw( 15 ) << z << endl ;
+		cout << setw( 15 ) << z << " "  << endl ;
 	}
 	cout << endl ;
 	
