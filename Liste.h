@@ -11,10 +11,9 @@ class Liste
     : public std::list<T>
 {
 public:
-/***  Konstruktoren  ***/
     typedef typename std::list<T>::iterator iterator;
     typedef typename std::list<T>::const_iterator const_iterator;
-
+/***  Konstruktoren  ***/
     Liste(){}
     Liste(Liste const &l)
     {
